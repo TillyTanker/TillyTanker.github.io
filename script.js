@@ -13,6 +13,9 @@ const firebaseConfig = {
   
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+var prevName = '';
+var prevFood = '';
+
 
 document.getElementById('submit-button').addEventListener('click', addPerson);
 document.getElementById('name-input').addEventListener('keyup', handleInputKeyPress);
@@ -21,6 +24,11 @@ document.getElementById('food-input').addEventListener('keyup', handleInputKeyPr
 document.getElementById('chat-submit-button').addEventListener('click', sendChatMessage);
 document.getElementById('chat-input').addEventListener('keyup', handleChatInputKeyPress);
 document.getElementById('chat-name-input').addEventListener('keyup', handleChatInputKeyPress);
+
+document.getElementById('name-input').addEventListener('input', function() {
+    const chatInput = document.getElementById('chat-name-input');
+    chatInput.value = this.value;
+});
 
 function handleChatInputKeyPress(event) {
     if (event.key === 'Enter') {
@@ -46,6 +54,11 @@ async function sendChatMessage() {
         alert('Please enter a message.');
         return;
     }
+    if(name === ''){
+        alert('Please enter your name above.');
+        return;
+    }
+
     let jsonData = {
         name: name,
         message: message, 
@@ -55,12 +68,16 @@ async function sendChatMessage() {
     try {
         const chatMessagesRef = ref(db, 'chatMessages'); 
         const newDocRef = push(chatMessagesRef);
+        const logsRef = ref(db, 'logs'); 
+        const newLogRef = push(logsRef);
 
         await set(newDocRef, jsonData);
-
+        await set(newLogRef, { activity: `Chat message from ${jsonData.name}: ${jsonData.message}`, timestamp: new Date().toISOString() });
+        
         console.log("Chat message saved with key: ", newDocRef.key);
 
         chatInput.value = '';
+        chatInput.focus();
     } catch (e) {
         console.error("Error adding chat message: ", e);
         alert('Error sending message.');
@@ -93,8 +110,11 @@ async function addPerson(){
         try {
             const userFoodsRef = ref(db, 'userFoods'); 
             const newDocRef = push(userFoodsRef);
+            const logsRef = ref(db, 'logs'); 
+            const newLogRef = push(logsRef);
 
             await set(newDocRef, jsonData);
+            await set(newLogRef, { activity: `Added ${jsonData.name} bringing ${jsonData.food}`, timestamp: new Date().toISOString() });
 
             console.log("Data saved with key: ", newDocRef.key);
 
@@ -105,7 +125,6 @@ async function addPerson(){
             alert('Error saving data.');
         }
 }
-
 
 async function displayData(foodDataArray, chatDataArray) {
     const tableBody = document.getElementById('table-body');
@@ -150,7 +169,6 @@ function setupDatabaseListener() {
         onValue(chatMessagesRef, (chatSnap) => {
             const chatData = chatSnap.val() || {};
             const chatArray = Object.keys(chatData).map(key => ({ id: key, ...chatData[key] }));
-
             displayData(foodArray, chatArray);
 
             document.querySelectorAll('.edit-button').forEach(button => {
@@ -172,17 +190,19 @@ function handleEditClick(event) {
     const nameInput = row.querySelector('#nameRow');
     const foodInput = row.querySelector('#foodRow');
     const icon = row.querySelector('.edit-button i');
+   
 
     if (icon.classList.contains('fa-edit')) {
         nameInput.disabled = false;
         foodInput.disabled = false;
-        nameInput.focus();
+        foodInput.focus();
         icon.classList.remove('fa-edit');
         icon.classList.add('fa-save');
+        prevName = nameInput.value;
+        prevFood = foodInput.value;
         row.addEventListener('keydown', handleEnterKeySave);
     } else {
-
-        updateDatabaseRow(row.getAttribute('data-id'), nameInput.value, foodInput.value);
+        updateDatabaseRow(row.getAttribute('data-id'), nameInput.value, foodInput.value, prevName, prevFood);
         nameInput.disabled = true;
         foodInput.disabled = true;
         icon.classList.remove('fa-save');
@@ -197,9 +217,29 @@ function handleEnterKeySave(event) {
     }
 }
 
-async function updateDatabaseRow(id, name, food) {
+async function updateDatabaseRow(id, name, food, prevName, prevFood) {
     const itemRef = ref(db, 'userFoods/' + id);
+    const logsRef = ref(db, 'logs');
+    var activity = `Updated entry from ${prevName} bringing ${prevFood} to ${name} bringing ${food}`;
+
+    if(name === prevName && food === prevFood){
+        activity = 'No changes made.';
+    }
+    if(name !== prevName && food === prevFood){
+        activity = `Updated entry from ${prevName} to ${name} bringing ${food}`;
+    }
+    if(name === prevName && food !== prevFood){
+        activity = `Updated entry for ${name} bringing ${prevFood} to bringing ${food}`;
+    }
+
+    var jsonData = {
+        activity: activity,
+        timestamp: new Date().toISOString()
+    };
+
     try {
+        const newLogRef = push(logsRef);
+        await set(newLogRef, jsonData);
         await update(itemRef, {
             name: name,
             food: food
