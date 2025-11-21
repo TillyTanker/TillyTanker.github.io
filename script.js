@@ -30,6 +30,11 @@ document.getElementById('name-input').addEventListener('input', function() {
     chatInput.value = this.value;
 });
 
+document.getElementById('chat-name-input').addEventListener('input', function() {
+    const chatInput = document.getElementById('name-input');
+    chatInput.value = this.value;
+});
+
 function handleChatInputKeyPress(event) {
     if (event.key === 'Enter') {
         event.preventDefault();

@@ -14,9 +14,7 @@
     </header>
     <div class="body-style">
         <div class="input-container">   
-        <input type="text" placeholder="Name" class="input-box" id="name-input">
-        <input type="text" placeholder="Food" class="input-box" id="food-input">
-        <button id="submit-button">Submit</button>
+        
         </div>
         <div class ="table-container">
             <table>
@@ -27,6 +25,11 @@
                         <th></th>
                     </tr>
                 </thead>
+                    <tr>
+                        <td><input type="text" placeholder="Name" class="input-box" id="name-input"></td> 
+                        <td><input type="text" placeholder="Food" class="input-box" id="food-input"></td>
+                        <td><button id="submit-button">Submit</button></td>
+                    </tr>
                 <tbody id="table-body">
                     
                 </tbody>
@@ -42,7 +45,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" placeholder="Set your name above" class="transparent-input-box" id="chat-name-input" disabled>
+                            <input type="text" placeholder="Set your name" class="input-box" id="chat-name-input" >
                         </td>
                         <td>
                             <input type="text" placeholder="Type your message here..." class="input-box" id="chat-input">
