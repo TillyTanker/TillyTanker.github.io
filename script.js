@@ -125,6 +125,7 @@ async function displayData(foodDataArray, chatDataArray) {
         tableBody.appendChild(newRow);
     });
 
+    chatDataArray.reverse();
     chatDataArray.forEach(item => {
         const newRow = document.createElement('tr');
         newRow.setAttribute('data-id', item.id);
