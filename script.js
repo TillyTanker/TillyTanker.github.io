@@ -118,7 +118,6 @@ async function addPerson(){
 
             console.log("Data saved with key: ", newDocRef.key);
 
-            nameInput.value = '';
             foodInput.value = '';
         } catch (e) {
             console.error("Error adding document: ", e);
