@@ -1,62 +1,61 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, inital-scale=1">
-        <title>SUSHI VOUCHER</title>
-        <link href="main.css" rel="stylesheet" type="text/css">    
-    </head>
-    <body>
-        <div class="center">
-            CONGRATULATIONS YOU HAVE WON ONE SUSHI DATE!!!
-            <div class = "image_container">
-                <div class = "sushi_spin"></div>
-                <div class = "sushi_spin"></div>
-                <div class = "sushi_spin"></div>
-                <div class = "sushi_spin"></div>
-                <div class = "sushi_spin"></div>
-            </div>
-            <div class = "image_container">
-                <div class = "sushi_spin"></div>
-                <div class = "sushi_spin"></div>
-                <div class = "sushi_spin"></div>
-                <div class = "sushi_spin"></div>
-                <div class = "sushi_spin"></div>
-            </div>
-            <div class = "image_container">
-                <div class = "sushi_spin"></div>
-                <div class = "sushi_spin"></div>
-                <div class = "sushi_spin"></div>
-                <div class = "sushi_spin"></div>
-                <div class = "sushi_spin"></div>
-            </div>
-            
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>TURKEY DAY</title>
+</head>
 
-            <div class = "image_container">
-                <div class = "sushi_spin_2"></div>
-                <div class = "sushi_spin_2"></div>
-                <div class = "sushi_spin_2"></div>
-                <div class = "sushi_spin_2"></div>
-                <div class = "sushi_spin_2"></div>
-            </div>
-            <div class = "image_container">
-                <div class = "sushi_spin_2"></div>
-                <div class = "sushi_spin_2"></div>
-                <div class = "sushi_spin_2"></div>
-                <div class = "sushi_spin_2"></div>
-                <div class = "sushi_spin_2"></div>
-            </div>
-            <div class = "image_container">
-                <div class = "sushi_spin_2"></div>
-                <div class = "sushi_spin_2"></div>
-                <div class = "sushi_spin_2"></div>
-                <div class = "sushi_spin_2"></div>
-                <div class = "sushi_spin_2"></div>
-            </div>
-
-            CLICK HERE TO CLAIM
-            <button class="button">HERE</button>
-
+<body>
+    <header class="header">
+    Potluck RSVP
+    </header>
+    <div class="body-style">
+        <div class="input-container">   
+        <input type="text" placeholder="Name" class="input-box" id="name-input">
+        <input type="text" placeholder="Food" class="input-box" id="food-input">
+        <button id="submit-button">Submit</button>
         </div>
-    </body>
+        <div class ="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Food</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    
+                </tbody>
+            </table>
+        </div>
+        <div class="chat-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Chat</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" placeholder="Name" class="input-box" id="chat-name-input">
+                        </td>
+                        <td>
+                            <input type="text" placeholder="Type your message here..." class="input-box" id="chat-input">
+                        </td>
+                        <td><button id="chat-submit-button"><i class="fa fa-paper-plane"></button></td>
+                    </tr>
+                </thead>
+                <tbody id="chat-table">
+                    
+                </tbody>
+            </table>
+        </div>
+   </div>
+    <script type="module" src="script.js"></script>
+</body>
 </html>
