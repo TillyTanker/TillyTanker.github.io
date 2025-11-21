@@ -2,6 +2,7 @@ body{
     margin: 0px;
     padding: 0px;
     font-family: Garamond, 'Segoe UI', Tahoma, Verdana, sans-serif;
+    
 }
 
 .header{
@@ -10,9 +11,18 @@ body{
     margin: 0px;
     padding: 20px;
     background: rgb(29, 31, 53);
-    color: #fff;    
+    color: #ffffff;    
     font-size: 2.5rem;
     text-align: center;
+    background-image: url(https://media.nbcchicago.com/2024/11/108065829-1732125771281-gettyimages-2179162881-dsc04327.jpeg?quality=85&strip=all&resize=1200%2C675);
+    background-size: 200px;
+    background-repeat: repeat;
+    background-size: contain;
+        text-shadow:
+        1px 1px 3px #000000,
+        -1px -1px 3px #000000,
+        1px -1px 3px #000000,
+        -1px 1px 3px #000000;
 }
 
 .body-style{
@@ -22,6 +32,7 @@ body{
     padding: 20px;
     font-size: 1.5rem;
     background-color: rgb(243, 243, 243);
+
 }
 
 .input-container {
@@ -38,7 +49,7 @@ body{
     border-radius: 8px;
     border: 1px solid #ccc; 
     background-color: #fff; 
-    color: #333;
+    color: #412323;
     width: 100%; 
     box-sizing: border-box; 
 }
