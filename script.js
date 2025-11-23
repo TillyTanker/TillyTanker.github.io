@@ -141,8 +141,8 @@ async function displayData(foodDataArray, chatDataArray) {
         newRow.setAttribute('data-id', item.id);
 
         newRow.innerHTML = `
-            <td><input class=transparent-input-box id=nameRow value="${item.name}" disabled></td>
-            <td><input class=transparent-input-box id=foodRow value="${item.food}" disabled></td>
+            <td><input class=transparent-input-box id=nameRow value="${item.name}" maxlength="100" disabled></td>
+            <td><input class=transparent-input-box id=foodRow value="${item.food}" maxlength="100" disabled></td>
             <td><button class="edit-button"><i class="fa fa-edit"></i></button></td>
         `;
         tableBody.appendChild(newRow);
