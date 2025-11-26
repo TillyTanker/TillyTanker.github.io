@@ -97,10 +97,6 @@ async function addPerson(){
             alert('Please enter both your name and what you are going to bring.');
             return;
         }
-        if(await isNameAlreadyUsed(nameInput.value.trim(), 'name')){
-            alert('Who is you? Please enter a different name.');
-            return;
-        }
         if(await isNameAlreadyUsed(foodInput.value.trim(), 'food')){
             alert('Erm... someone is already bringing that? Please enter a different food.');
             return;

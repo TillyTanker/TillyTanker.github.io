@@ -1,12 +1,12 @@
 :root{
     --mainColor: rgb(209, 132, 81);
-    --accentColor: rgb(156, 99, 61);
+    --accentColor: rgb(250, 100, 62);
 }
 
 body{
     margin: 0px;
     padding: 0px;
-    font-family: Garamond, 'Segoe UI', Tahoma, Verdana, sans-serif;
+    font-family: Gabriola, Garamond, 'Segoe UI', Tahoma, Verdana, sans-serif;
     background-color: rgb(243, 243, 243);
     
 }
@@ -39,6 +39,18 @@ body{
     font-size: 1.5rem;
     background-color: rgb(243, 243, 243);
 
+}
+
+.info-text{
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgb(255, 255, 255);
+    padding: 10px;
+    margin-bottom: 20px;
+    color:rgb(66, 66, 66);
+    width: 90%;
 }
 
 .input-container {
@@ -109,6 +121,9 @@ button:hover {
     .table-container{
         width: 80%; 
     }
+    .info-text{
+        width: 30%;
+    }
 }
 
 
@@ -131,6 +146,7 @@ table{
     width: 100%;
     border-collapse: collapse;   
     table-layout: fixed; 
+    font-family: Gabriola, Garamond, 'Segoe UI', Tahoma, Verdana, sans-serif;
 }
 
 td{
@@ -144,10 +160,12 @@ th{
     color: #ffffff;
     background-color: var(--mainColor);
     
+    
 }
 
 tr{
     background-color: rgb(238, 238, 238);
+    
 }
 
 tr:nth-child(even){
@@ -171,6 +189,8 @@ td:last-child button{
     width: 100%;
     padding: 2px;
     padding-left: 5px;
+    font-family: Gabriola, Garamond, 'Segoe UI', Tahoma, Verdana, sans-serif;
+    font-size: 1rem;
 }
 
 .transparent-input-box:disabled {
